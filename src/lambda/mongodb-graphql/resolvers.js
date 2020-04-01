@@ -1,8 +1,8 @@
 module.exports = db => ({
   Query: {
-    allPosts: async () =>
+    allTodos: async () =>
       await db
-        .collection('posts')
+        .collection("todos")
         .find()
         .toArray()
   }

@@ -1,5 +1,4 @@
-const MongoClient = require('mongodb').MongoClient;
-console.log(process.env.DB_URI);
+const MongoClient = require("mongodb").MongoClient;
 const URI = process.env.DB_URI;
 const DB_NAME = process.env.DB_NAME;
 

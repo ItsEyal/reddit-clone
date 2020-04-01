@@ -1,13 +1,13 @@
-const { gql } = require('apollo-server-lambda');
+const { gql } = require("apollo-server-lambda");
 
 module.exports = gql`
-  type Post {
+  type Todo {
     id: ID!
     title: String!
-    body: String!
+    completed: Boolean!
   }
 
   type Query {
-    allPosts: [Post]
+    allTodos: [Todo]
   }
 `;
