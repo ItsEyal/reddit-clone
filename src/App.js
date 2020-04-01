@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 function App() {
   const [hello, setHello] = useState('');
   useEffect(() => {
-    fetch('/api/hello')
+    fetch('/.netlify/functions/hello')
       .then(res => res.json)
       .then(json => setHello(json.hello ?? 'error'));
   }, []);
