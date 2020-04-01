@@ -7,7 +7,10 @@ function App() {
   const [hello, setHello] = useState('');
   useEffect(() => {
     fetch('/.netlify/functions/hello')
-      .then(res => res.json)
+      .then(res => {
+        console.log(res);
+        return res.json();
+      })
       .then(json => setHello(json.message ?? 'error'));
   }, []);
   return (
