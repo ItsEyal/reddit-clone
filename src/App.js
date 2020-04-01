@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     fetch('/.netlify/functions/hello')
       .then(res => res.json)
-      .then(json => setHello(json.hello ?? 'error'));
+      .then(json => setHello(json.message ?? 'error'));
   }, []);
   return (
     <div className='App'>
