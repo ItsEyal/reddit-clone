@@ -1,22 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { useEffect } from 'react';
 
 function App() {
-  const [hello, setHello] = useState('');
-  useEffect(() => {
-    fetch('/.netlify/functions/hello')
-      .then(res => {
-        console.log(res);
-        return res.json();
-      })
-      .then(json => setHello(json.message ?? 'error'));
-  }, []);
   return (
     <div className='App'>
       <header className='App-header'>
-        <h1>{hello}</h1>
         <img src={logo} className='App-logo' alt='logo' />
         <p>
           Edit <code>src/App.js</code> and save to reload.
