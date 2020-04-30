@@ -1,14 +1,22 @@
-const MongoClient = require("mongodb").MongoClient;
+const mongoose = require('mongoose');
 const URI = process.env.DB_URI;
-const DB_NAME = process.env.DB_NAME;
+const dbOptions = {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+};
 
 let cachedDb = null;
 module.exports = () => {
-  if (cachedDb && cachedDb.serverConfig.isConnected()) {
+  if (cachedDb && cachedDb.readyState === 1) {
     return Promise.resolve(cachedDb);
   }
-  return MongoClient.connect(URI, { useNewUrlParser: true }).then(client => {
-    cachedDb = client.db(DB_NAME);
-    return cachedDb;
-  });
+
+  mongoose.connect(URI, dbOptions);
+  cachedDb = mongoose.connection;
+  cachedDb.on(
+    'error',
+    console.error.bind(console, 'MongoDB connection error:'),
+  );
+  return cachedDb;
 };
