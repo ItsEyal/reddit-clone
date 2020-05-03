@@ -56,10 +56,16 @@ module.exports = gql`
     about: String
     posts: [Post]!
   }
-
+  
   type Query {
     subreddits: [Subreddit]!
     subreddit(name: String!): Subreddit!
+    post(postId: ID!): Post! 
+    comment(commentId: ID!): Comment!
+  }
+  type ThingUpdateResponse {
+    success: Boolean!
+    message: String
   }
 
   type Mutation {
@@ -71,5 +77,10 @@ module.exports = gql`
       userId: ID!
       subredditId: ID!
     ): Post!
+    createComment(body: String!, userId: ID!): Comment!
+    deleteSubreddit(subredditId: ID!): ThingUpdateResponse!
+    deletePost(postId: ID!): ThingUpdateResponse!
+    deleteComment(commentId: ID!): ThingUpdateResponse!
+
   }
 `;
